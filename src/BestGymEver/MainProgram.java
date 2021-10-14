@@ -18,11 +18,6 @@ public class MainProgram {
 
         List<List<String>> allInfo = io.readFile(inputPath);
         List<Person> allPersons = c.createPersonList(allInfo);
-        List<Person> payingCustomers = f.filterOutByDate(allPersons);
-
-        for (Person customer:payingCustomers) {
-            System.out.println(customer);
-        }
 
         while (loop != null) {
             loop = io.validateUserInput("ForTesting", false);
@@ -30,7 +25,6 @@ public class MainProgram {
         }
 
         io.writeToFile(outputPath, f.getReturningCustomers());
-
     }
 
     public MainProgram() {
