@@ -1,0 +1,6 @@
+Sven Svensson	Personnummer: 1234567891	Medlem sedan: 2021-08-07	Senaste besök: Okänt
+Anja Andersson	Personnummer: 1987654321	Medlem sedan: 2021-02-10	Senaste besök: Okänt
+Majvor Strömkvist	Personnummer: 1111111111	Medlem sedan: 2020-12-20	Senaste besök: Okänt
+Sven Svensson	Personnummer: 1234567891	Medlem sedan: 2021-08-07	Senaste besök: Okänt
+Anja Andersson	Personnummer: 1987654321	Medlem sedan: 2021-02-10	Senaste besök: Okänt
+Majvor Strömkvist	Personnummer: 1111111111	Medlem sedan: 2020-12-20	Senaste besök: Okänt
