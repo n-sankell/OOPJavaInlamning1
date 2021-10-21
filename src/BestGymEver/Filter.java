@@ -1,6 +1,8 @@
 package BestGymEver;
 
 import javax.swing.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ public class Filter {
 
     public LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     public LocalDateTime oneYearAgo = now.minusYears(1);
+    public Path outputPath = Paths.get("src/OUTPUT/returningCustomers.txt");
+    InputOutput writePerson = new InputOutput();
     private List<Person> returningCustomers = new ArrayList<>();
 
     public List<Person> filterOutByDate(List<Person> allPersons) {
@@ -26,13 +30,14 @@ public class Filter {
         int count = 1;
         for (Person person : allPersons) {
             if (person.getSsn().equals(inputSsn) && person.getLastPayment().isAfter(oneYearAgo)) {
+                person.setLastVisited(now);
                 if (!isTest) {
                     JOptionPane.showMessageDialog(null, "Välkommen tillbaks, "+person.getName()+"! ");
+                    writePerson.writePersonToFile(outputPath, person);
                 } else {
+                    returningCustomers.add(person);
                     System.out.println("Välkommen tillbaks, "+person.getName()+"! ");
                 }
-                    person.setLastVisited(now);
-                    returningCustomers.add(person);
                     break;
             } else if (person.getSsn().equals(inputSsn)) {
                 if (!isTest) {

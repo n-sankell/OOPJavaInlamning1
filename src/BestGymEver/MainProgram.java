@@ -6,9 +6,9 @@ import java.util.List;
 
 public class MainProgram {
 
-    Path inputPath = Paths.get("src/INPUT/customers.txt");
-    Path outputPath = Paths.get("src/OUTPUT/returningCustomers.txt");
-    String loop = "turnsNullToBreakLoop";
+    public Path inputPath = Paths.get("src/INPUT/customers.txt");
+    public Path outputPath = Paths.get("src/OUTPUT/returningCustomers.txt");
+    public String loop = "turnsNullToBreakLoop";
 
     public void useProgram() {
 
@@ -23,8 +23,6 @@ public class MainProgram {
             loop = io.validateUserInput("ForTesting", false);
             f.checkSsn(loop, allPersons, false);
         }
-
-        io.writeToFile(outputPath, f.getReturningCustomers());
     }
 
     public MainProgram() {
@@ -32,6 +30,6 @@ public class MainProgram {
     }
 
     public static void main(String[] args) {
-        MainProgram b = new MainProgram();
+        new MainProgram();
     }
 }

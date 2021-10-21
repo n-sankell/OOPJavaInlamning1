@@ -70,6 +70,11 @@ class InputOutputTest {
         assertTrue(outputTestList.size()==expectedSizeOfList);
     }
 
+    @Test
+    void writePersonToFile() {
+
+    }
+
     public final int countLinesInFile(Path fileToCount) {
         int lines = 1;
         try (BufferedReader reader = new BufferedReader(new FileReader(String.valueOf(fileToCount)))) {

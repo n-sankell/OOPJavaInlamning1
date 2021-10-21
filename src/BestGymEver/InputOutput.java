@@ -21,7 +21,7 @@ public class InputOutput {
             while ((a = read.readLine()) != null) {
                 b = read.readLine();
                 if (b != null) {
-                    ab = a+", "+b;
+                    ab = a + ", " + b;
                     fromFile.add(List.of(ab.split(", ")));
                 }
             }
@@ -48,7 +48,7 @@ public class InputOutput {
             }
             if (input == null) {
                 if (!isTest) {
-                    int confirm = JOptionPane.showConfirmDialog(null, "Vill du avsluta? ","Avsluta?",JOptionPane.YES_NO_OPTION);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Vill du avsluta? ", "Avsluta?", JOptionPane.YES_NO_OPTION);
                     if (confirm == 0) {
                         return null;
                     }
@@ -62,17 +62,23 @@ public class InputOutput {
                     if (!isTest) {
                         JOptionPane.showMessageDialog(null, "Ange enbart siffror i personnumret. ");
                     } else {
-                        System.out.println("Ange enbart siffror i personnumret. ");return input; }
+                        System.out.println("Ange enbart siffror i personnumret. ");
+                        return input;
+                    }
                 } else if (input.length() < 10) {
                     if (!isTest) {
                         JOptionPane.showMessageDialog(null, "För få siffror i personnumret. ");
                     } else {
-                        System.out.println("För få siffror i personnumret. "); return input; }
+                        System.out.println("För få siffror i personnumret. ");
+                        return input;
+                    }
                 } else if (input.length() > 10) {
                     if (!isTest) {
                         JOptionPane.showMessageDialog(null, "För många siffror i personnumret. ");
                     } else {
-                        System.out.println("För många siffror i personnumret. "); return input; }
+                        System.out.println("För många siffror i personnumret. ");
+                        return input;
+                    }
                 } else {
                     return input;
                 }
@@ -81,20 +87,20 @@ public class InputOutput {
     }
 
     public void writeToFile(Path outputPath, List<Person> returningCustomers) {
-        try(PrintWriter write = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(String.valueOf(outputPath),true))))) {
+        try (PrintWriter write = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(String.valueOf(outputPath), true))))) {
             for (Person customer : returningCustomers) {
                 if (customer.getLastVisited().equals(customer.getLastPayment())) {
-                    write.println(customer.getName()+
-                            "\tPersonnummer: "+customer.getSsn()+
-                            "\tMedlem sedan: "+customer.getLastPayment().format(formatOnlyDate)+
+                    write.println(customer.getName() +
+                            "\tPersonnummer: " + customer.getSsn() +
+                            "\tMedlem sedan: " + customer.getLastPayment().format(formatOnlyDate) +
                             "\tSenaste besök: Okänt");
                 } else {
-                    write.println(customer.getName()+
-                            "\tPersonnummer: "+customer.getSsn()+
-                            "\tMedlem sedan: "+customer.getLastPayment().format(formatOnlyDate)+
+                    write.println(customer.getName() +
+                            "\tPersonnummer: " + customer.getSsn() +
+                            "\tMedlem sedan: " + customer.getLastPayment().format(formatOnlyDate) +
                             "\tSenaste besök: " + customer.getLastVisited().format(formatWithTime));
                 }
-        }
+            }
             write.flush();
         } catch (FileNotFoundException fn) {
             System.out.println("Filen kunde inte hittas. ");
@@ -102,9 +108,37 @@ public class InputOutput {
             System.exit(0);
 
         } catch (Exception ex) {
-            System.out.println("Okänt fel. ");
+            System.out.println("Det gick inte att skriva till filen. ");
             ex.printStackTrace();
             System.exit(0);
         }
     }
+
+    public void writePersonToFile(Path outputPath, Person customer) {
+        try (PrintWriter write = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(String.valueOf(outputPath), true))))) {
+            if (customer.getLastVisited().equals(customer.getLastPayment())) {
+                write.println(customer.getName() +
+                        "\tPersonnummer: " + customer.getSsn() +
+                        "\tMedlem sedan: " + customer.getLastPayment().format(formatOnlyDate) +
+                        "\tSenaste besök: Okänt");
+            } else {
+                write.println(customer.getName() +
+                        "\tPersonnummer: " + customer.getSsn() +
+                        "\tMedlem sedan: " + customer.getLastPayment().format(formatOnlyDate) +
+                        "\tSenaste besök: " + customer.getLastVisited().format(formatWithTime));
+            }
+            write.flush();
+
+    } catch (FileNotFoundException fn) {
+        System.out.println("Filen kunde inte hittas. ");
+        fn.printStackTrace();
+        System.exit(0);
+
+    } catch (Exception ex) {
+        System.out.println("Okänt fel. ");
+        ex.printStackTrace();
+        System.exit(0);
+    }
+}
+
 }
